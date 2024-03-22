@@ -1,20 +1,14 @@
 from flask import Flask, request
-from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
 from weather import get_reverse_geocode, get_location_geocode, get_current_weather, get_past_week_weather
 
-app = Flask(__name__, static_folder='../client/build', static_url_path='')
+app = Flask(__name__, static_folder='./client/build', static_url_path='/')
 CORS(app)
-
-@app.route('/api', methods=['GET'])
-@cross_origin()
-def index():
-    return 'Hello, World!'
 
 @app.route('/')
 @cross_origin()
-def serve():
-    return send_from_directory(app.static_folder, 'index.html')
+def index():
+    return app.send_static_file('index.html')
 
 @app.route('/reverse_geocode', methods=['POST'])
 def reverse_geocode():
