@@ -66,7 +66,7 @@ const WeatherDisplay = React.memo((props: WeatherDisplayProps) => {
                                 </Button>
                             </Stack>
                         </Stack>
-                        <Divider sx={{ marginY: '1rem' }} />
+                        <Divider sx={{ marginBottom: '1rem' }} />
                         <CurrentWeather
                             currentWeatherData={currentWeather.current}
                             tempUnits={tempUnits}
