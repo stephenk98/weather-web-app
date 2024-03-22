@@ -39,10 +39,35 @@ export interface OpenWeatherResponseFeature {
     wind_speed: number
 }
 
+export interface HourlyForecast extends OpenWeatherResponseFeature {
+    pop: number
+}
+
+export interface DailyForecast extends Omit<HourlyForecast, 'temp' | 'feels_like'>{
+    moonrise: number,
+    moonset: number,
+    moon_phase: number,
+    summary: string,
+    temp: {
+        day: number,
+        min: number,
+        max: number,
+        night: number,
+        eve: number,
+        morn: number
+    }
+    feels_like: {
+        day: number,
+        night: number,
+        eve: number,
+        morn: number
+    }
+}
+
 export interface OpenWeatherResponse {
     current: OpenWeatherResponseFeature
-    daily: OpenWeatherResponseFeature[]
-    hourly: OpenWeatherResponseFeature[]
+    daily: DailyForecast[]
+    hourly: HourlyForecast[]
     lat: number
     lon: number
     timezone: string
