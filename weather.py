@@ -41,6 +41,5 @@ def get_past_week_weather(lat, lon):
         date = (datetime.today() - timedelta(days=i))
         unix_timestamp = str(int(date.timestamp()))
         resp = requests.get(f"https://api.openweathermap.org/data/3.0/onecall/timemachine?lat={lat}&lon={lon}&dt={unix_timestamp}&appid={open_weather_api_key}&exclude=minutely")
-        # past_week_weather[date.strftime('%Y-%m-%d')] = resp.json()['data'][0]
         past_week_weather.append(resp.json()['data'][0])
     return past_week_weather
