@@ -62,10 +62,6 @@ const App = () => {
     }
   }, [])
 
-  console.log("DISPLAY LOCATION", displayLocation)
-  console.log("CURRENT WEATHER", currentWeather)
-  console.log("LAST WEEK WEATHER", lastWeekWeather)
-
   return (
     <PageContainer>
       <ContentContainer>
