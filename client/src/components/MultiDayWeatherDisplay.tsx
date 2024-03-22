@@ -17,6 +17,7 @@ const MultiDayWeather = React.memo((props: MultiDayWeatherProps) => {
             const weatherDate = convertUnixToDate(weather.dt)
             return (
                 <Box
+                    key={weatherDate.toISOString()}
                     width='75px'
                     display='flex'
                     flexDirection='column'
