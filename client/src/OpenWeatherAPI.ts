@@ -26,8 +26,10 @@ export const geocodeLocation = async (
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(location),
-    }).then((res) => res.json())
-    setDisplayLocation(response)
+    }).then((res) => res.ok ? res.json() : null)
+    if (response) {
+        setDisplayLocation(response)
+    }
     return response
 }
 
