@@ -32,8 +32,12 @@ const CitySearch = React.memo((props: CitySearchProps) => {
         const geocodeResponse = await geocodeLocation(
             searchLocation, setDisplayLocation
         ).then((res) => res)
-        getCurrentWeather(geocodeResponse, setCurrentWeather)
-        // getLastWeekWeather(geocodeResponse, setLastWeekWeather)
+        if (geocodeResponse) {
+            getCurrentWeather(geocodeResponse, setCurrentWeather)
+            getLastWeekWeather(geocodeResponse, setLastWeekWeather)
+        } else {
+            alert('Error. Location not found. Please try again.')
+        }
         setSearchLocation({
             city: "",
             state: "",

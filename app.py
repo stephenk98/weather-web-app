@@ -17,7 +17,7 @@ def reverse_geocode():
         lat = request_data.get('lat')
         lon = request_data.get('lon')
         data = get_reverse_geocode(lat, lon)
-    return data
+    return data, 200
 
 @app.route('/geocode_location', methods=['POST'])
 def geocode_location():
@@ -28,7 +28,9 @@ def geocode_location():
         state = request_data.get('state')
         country = request_data.get('country')
         data = get_location_geocode(city, state, country)
-    return data
+    if not data:
+        return {'error': 'Location not found.'}, 404
+    return data, 200
 
 @app.route('/current_weather', methods=['POST'])
 def current_weather():
@@ -38,7 +40,7 @@ def current_weather():
         lat = request_data.get('lat')
         lon = request_data.get('lon')
         data = get_current_weather(lat, lon)
-    return data
+    return data, 200
 
 @app.route('/last_week_weather', methods=['POST'])
 def last_week_weather():
@@ -48,7 +50,7 @@ def last_week_weather():
         lat = request_data.get('lat')
         lon = request_data.get('lon')
         data = get_past_week_weather(lat, lon)
-    return data
+    return data, 200
 
 if __name__ == '__main__':
     app.run(debug=True)

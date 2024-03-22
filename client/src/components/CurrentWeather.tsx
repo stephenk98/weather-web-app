@@ -14,7 +14,7 @@ const CurrentWeather = React.memo((props: CurrentWeatherProps) => {
     return (
         <Stack direction='row' justifyContent='space-between'>
             <Stack spacing={0}>
-                <Stack direction='row' spacing='1rem' alignItems='center'>
+                <Stack direction='row' alignItems='center'>
                     <Typography variant='h2' fontWeight='fontWeightBold'>
                         {`${tempUnits === 'C'
                             ? convertKelvinToCelsius(currentWeatherData.temp)
@@ -34,11 +34,8 @@ const CurrentWeather = React.memo((props: CurrentWeatherProps) => {
                         : convertKelvinToFahrenheit(currentWeatherData.feels_like)
                     }°${tempUnits}`}
                 </Typography>
-                <Typography variant='subtitle1' color='grey'>
-                    {currentWeatherData.weather[0].main}
-                </Typography>
                 <Typography variant='subtitle1' color='grey' textTransform='capitalize'>
-                    {currentWeatherData.weather[0].description}
+                    {`${currentWeatherData.weather[0].main} (${currentWeatherData.weather[0].description})`}
                 </Typography>
             </Stack>
         </Stack>
