@@ -4,6 +4,7 @@ import { Box, Button, CircularProgress, Divider, Stack, ToggleButton, ToggleButt
 import styled from 'styled-components'
 import CurrentWeather from './CurrentWeather'
 import LastWeekWeather from './LastWeekWeather'
+import { handleDisplayRawJSON } from '../utils'
 
 const WeatherDisplayContent = styled.div`
     display: flex;
@@ -24,8 +25,6 @@ interface WeatherDisplayProps {
 
 const WeatherDisplay = React.memo((props: WeatherDisplayProps) => {
     const { displayLocation, currentWeather, lastWeekWeather, tempUnits, setTempUnits } = props
-
-    console.log("LAST WEEK WEATHER", lastWeekWeather)
 
     return (
         <Box
@@ -61,7 +60,7 @@ const WeatherDisplay = React.memo((props: WeatherDisplayProps) => {
                                     <ToggleButton value='C'>°C</ToggleButton>
                                     <ToggleButton value='F'>°F</ToggleButton>
                                 </ToggleButtonGroup>
-                                <Button color='primary'>
+                                <Button color='primary' onClick={() => handleDisplayRawJSON(currentWeather)}>
                                     View Raw JSON
                                 </Button>
                             </Stack>

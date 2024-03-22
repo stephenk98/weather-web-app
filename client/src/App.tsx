@@ -32,19 +32,23 @@ const App = () => {
   const [tempUnits, setTempUnits] = useState<'C' | 'F'>('C')
 
   const getCurrentLocationCoords =  async (position: any) => {
-    const reverseGeocodeResponse = await reverseGeocode(
-      position.coords.latitude, position.coords.longitude, setDisplayLocation
-    ).then((res) => res)
-    getCurrentWeather(reverseGeocodeResponse, setCurrentWeather)
-    getLastWeekWeather(reverseGeocodeResponse, setLastWeekWeather)
+    if (!displayLocation) {
+      const reverseGeocodeResponse = await reverseGeocode(
+        position.coords.latitude, position.coords.longitude, setDisplayLocation
+      ).then((res) => res)
+      getCurrentWeather(reverseGeocodeResponse, setCurrentWeather)
+      getLastWeekWeather(reverseGeocodeResponse, setLastWeekWeather)
+    }
   }
 
   const getDefaultLocationWeather = async () => {
-    const geocodeResponse = await geocodeLocation(
-      {city: "Toronto", state: "Ontario", country: "Canada"}, setDisplayLocation
-    ).then((res) => res)
-    getCurrentWeather(geocodeResponse, setCurrentWeather)
-    getLastWeekWeather(geocodeResponse, setLastWeekWeather)
+    if (!displayLocation) {
+      const geocodeResponse = await geocodeLocation(
+        {city: "Toronto", state: "Ontario", country: "Canada"}, setDisplayLocation
+      ).then((res) => res)
+      getCurrentWeather(geocodeResponse, setCurrentWeather)
+      getLastWeekWeather(geocodeResponse, setLastWeekWeather)
+    }
   }
 
   useEffect(() => {

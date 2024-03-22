@@ -55,3 +55,8 @@ export const getHistoricalDataCSVName = (
   const lastDate = convertUnixToDate(lastWeekWeatherData[lastWeekWeatherData.length - 1].dt)
   return `${location}_weather_${firstDate.toDateString().replace(/ /g,'')}_to_${lastDate.toDateString().replace(/ /g,'')}.csv`
 }
+
+export const handleDisplayRawJSON = (jsonData: any) => {
+  const newWindow = window.open('', '_blank')
+  newWindow?.document.write('<pre>'+JSON.stringify(jsonData, null, 2)+'</pre>')
+}
