@@ -4,7 +4,6 @@ import CitySearch from './components/CitySearch'
 import { GeocodeData, Location, OpenWeatherResponse, OpenWeatherResponseFeature } from './CustomTypes'
 import WeatherDisplay from './components/WeatherDisplay'
 import { reverseGeocode, getCurrentWeather, getLastWeekWeather, geocodeLocation } from './OpenWeatherAPI'
-import { testLastWeekWeatherData } from './utils'
 
 const PageContainer = styled.div`
   display: flex;
@@ -37,7 +36,7 @@ const App = () => {
       position.coords.latitude, position.coords.longitude, setDisplayLocation
     ).then((res) => res)
     getCurrentWeather(reverseGeocodeResponse, setCurrentWeather)
-    // getLastWeekWeather(reverseGeocodeResponse, setLastWeekWeather)
+    getLastWeekWeather(reverseGeocodeResponse, setLastWeekWeather)
   }
 
   const getDefaultLocationWeather = async () => {
@@ -45,7 +44,7 @@ const App = () => {
       {city: "Toronto", state: "Ontario", country: "Canada"}, setDisplayLocation
     ).then((res) => res)
     getCurrentWeather(geocodeResponse, setCurrentWeather)
-    // getLastWeekWeather(geocodeResponse, setLastWeekWeather)
+    getLastWeekWeather(geocodeResponse, setLastWeekWeather)
   }
 
   useEffect(() => {
@@ -76,7 +75,7 @@ const App = () => {
         <WeatherDisplay
           displayLocation={displayLocation}
           currentWeather={currentWeather}
-          lastWeekWeather={testLastWeekWeatherData}
+          lastWeekWeather={lastWeekWeather}
           tempUnits={tempUnits}
           setTempUnits={setTempUnits}
         />
