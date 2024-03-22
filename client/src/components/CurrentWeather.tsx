@@ -1,6 +1,6 @@
 import React from 'react'
 import { OpenWeatherResponseFeature } from '../CustomTypes'
-import { Stack, Typography } from '@mui/material'
+import { Divider, Stack, Typography } from '@mui/material'
 import { convertKelvinToCelsius, convertKelvinToFahrenheit, getWeatherIconUrl } from '../utils'
 
 interface CurrentWeatherProps {
@@ -13,7 +13,7 @@ const CurrentWeather = React.memo((props: CurrentWeatherProps) => {
 
     return (
         <Stack direction='row' justifyContent='space-between'>
-            <Stack spacing={0}>
+            <Stack>
                 <Stack direction='row' alignItems='center'>
                     <Typography variant='h2' fontWeight='fontWeightBold'>
                         {`${tempUnits === 'C'
@@ -36,6 +36,21 @@ const CurrentWeather = React.memo((props: CurrentWeatherProps) => {
                 </Typography>
                 <Typography variant='subtitle1' color='grey' textTransform='capitalize'>
                     {`${currentWeatherData.weather[0].main} (${currentWeatherData.weather[0].description})`}
+                </Typography>
+            </Stack>
+            <Divider orientation='vertical' />
+            <Stack spacing={0} justifyContent='flex-end' alignItems='flex-end'>
+                <Typography variant='subtitle1' fontWeight='fontWeightMedium'>
+                    {`Humidity: ${currentWeatherData.humidity}%`}
+                </Typography>
+                <Typography variant='subtitle1' fontWeight='fontWeightMedium'>
+                    {`UV Index: ${currentWeatherData.uvi}`}
+                </Typography>
+                <Typography variant='subtitle1' fontWeight='fontWeightMedium'>
+                    {`Pressure: ${currentWeatherData.pressure} hPa`}
+                </Typography>
+                <Typography variant='subtitle1' fontWeight='fontWeightMedium'>
+                    {`Wind: ${currentWeatherData.wind_speed} m/s`}
                 </Typography>
             </Stack>
         </Stack>

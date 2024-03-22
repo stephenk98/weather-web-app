@@ -1,10 +1,10 @@
 import React from 'react'
 import { OpenWeatherResponseFeature } from '../CustomTypes'
-import { Button, Divider, IconButton, Stack, Typography } from '@mui/material'
+import { Button, IconButton, Stack, Typography } from '@mui/material'
 import { Download } from '@mui/icons-material'
 import { cleanHistoricalDataForDownload, getHistoricalDataCSVName, handleDisplayRawJSON } from '../utils'
 import { CSVLink } from 'react-csv'
-import MultiDayWeather from './MultiDayWeatherDisplay'
+import MultiDayWeatherDisplay from './MultiDayWeatherDisplay'
 
 interface LastWeekWeatherProps {
     lastWeekWeatherData: OpenWeatherResponseFeature[]
@@ -35,7 +35,7 @@ const LastWeekWeather = React.memo((props: LastWeekWeatherProps) => {
                 </Stack>
             </Stack>
             <Stack direction='row' spacing='1rem' width='100%' justifyContent='space-evenly'>
-                <MultiDayWeather weatherData={lastWeekWeatherData} tempUnits={tempUnits} />
+                <MultiDayWeatherDisplay weatherData={lastWeekWeatherData} tempUnits={tempUnits} />
             </Stack>
         </>
     )

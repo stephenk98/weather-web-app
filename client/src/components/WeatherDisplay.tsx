@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import CurrentWeather from './CurrentWeather'
 import LastWeekWeather from './LastWeekWeather'
 import { handleDisplayRawJSON } from '../utils'
+import WeeklyForecast from './WeeklyForecast'
 
 const WeatherDisplayContent = styled.div`
     display: flex;
@@ -75,6 +76,11 @@ const WeatherDisplay = React.memo((props: WeatherDisplayProps) => {
                             lastWeekWeatherData={lastWeekWeather}
                             tempUnits={tempUnits}
                             location={`${displayLocation.name}${displayLocation.state}${displayLocation.country}`}
+                        />
+                        <Divider sx={{ marginY: '1rem' }} />
+                        <WeeklyForecast
+                            weeklyForecastData={currentWeather.daily}
+                            tempUnits={tempUnits}
                         />
                 </WeatherDisplayContent>
                 : <CircularProgress sx={{ marginY: '1rem' }} />

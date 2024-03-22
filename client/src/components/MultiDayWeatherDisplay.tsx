@@ -3,12 +3,12 @@ import { OpenWeatherResponseFeature } from '../CustomTypes'
 import { Box, Stack, Typography } from '@mui/material'
 import { convertKelvinToCelsius, convertKelvinToFahrenheit, convertUnixToDate, getDayName, getWeatherIconUrl } from '../utils'
 
-interface MultiDayWeatherProps {
+interface MultiDayWeatherDisplayProps {
     weatherData: OpenWeatherResponseFeature[],
     tempUnits: 'C' | 'F'
 }
 
-const MultiDayWeather = React.memo((props: MultiDayWeatherProps) => {
+const MultiDayWeatherDisplay = React.memo((props: MultiDayWeatherDisplayProps) => {
     const { weatherData, tempUnits } = props
 
     return (
@@ -64,4 +64,4 @@ const MultiDayWeather = React.memo((props: MultiDayWeatherProps) => {
     )
 })
 
-export default MultiDayWeather
+export default MultiDayWeatherDisplay
